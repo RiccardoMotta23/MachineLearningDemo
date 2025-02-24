@@ -10,5 +10,8 @@ from sklearn.metrics import mean_squared_error
 # --- END OF IMPORT SECTION ---
 
 # --- MAIN CODE ---
+path_to_data = "Salary_Data.csv"
+data = pd.read_csv(path_to_data)
+print(data.head())
 
 # --- END OF MAIN CODE ---
