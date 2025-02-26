@@ -35,4 +35,29 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train) # fitting to X_train and transforming then
 X_test_scaled = scaler.transform(X_test)
 
+# Creating the model
+model = RandomForestClassifier(n_estimators = 100, random_state = 101)
+
+# Training the model
+model.fit(X_train_scaled, y_train)
+
+# Predicting new values
+y_pred = model.predict(X_test_scaled)
+
+# Evaluating the model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"\nThe accuracy of the model is: {accuracy * 100:.2f} %")
+
+# Classification Report
+print(f"\nClassification report:\n{classification_report(y_test, y_pred)}")
+
+# Confusion matrix
+conf_matrix = confusion_matrix(y_test, y_pred)
+sns.heatmap(conf_matrix, annot = True, fmt = 'd', cmap = 'Reds', xticklabels = dataset.target_names,
+            yticklabels = dataset.target_names)
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
+
 # --- END OF MAIN CODE ---
